@@ -47,6 +47,7 @@ public class Enemy : MonoBehaviour
     }
     void OnGotToLastWayPoint()
     {
+        GameManager.Instance.OnEnemyEscape();
         Die();
     }
 
@@ -56,8 +57,13 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
+            DropGold();
             Die();
         }
+    }
+    void DropGold()
+    {
+        GameManager.Instance.gold += goldDrop;
     }
 
 
@@ -72,17 +78,15 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
+        if(wayPointIndex < WayPointManager.Instance.Paths[pathIndex].WayPoints.Count)
         {
-            if(wayPointIndex < WayPointManager.Instance.Paths[pathIndex].WayPoints.Count)
-            {
-                UpdateMovement();
-            }
-            else
-            {
-                OnGotToLastWayPoint();
-            }
+            UpdateMovement();
+        }
+        else
+        {
+            OnGotToLastWayPoint();
         }
     }
     private void UpdateMovement()
