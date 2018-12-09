@@ -21,7 +21,7 @@ public class WaveManager : MonoBehaviour {
     {
         elapsedTime += Time.deltaTime;
         SearchForWave();
-        updateActiveWave();
+        UpdateActiveWave();
     }
     private void SearchForWave()
     {
@@ -32,11 +32,12 @@ public class WaveManager : MonoBehaviour {
                 activeWave = enemyWave;
                 activatedWaves.Add(enemyWave);
                 spawnCounter = 0f;
+                GameManager.Instance.waveNumber++;
                 break;
             }
         }
     }
-    private void updateActiveWave()
+    private void UpdateActiveWave()
     {
         if (activeWave != null)
         {
@@ -44,19 +45,19 @@ public class WaveManager : MonoBehaviour {
             if (spawnCounter >= activeWave.timeBetweenSpawnsInSeconds)
             {
                 spawnCounter = 0f;
-            }
-            if(activeWave.listOfEnemies.Count!= 0)
-            {
-                GameObject enemy = (GameObject)Instantiate(activeWave.listOfEnemies[0], WayPointManager.Instance.GetSpawnPosition(activeWave.pathIndex), Quaternion.identity);
-                enemy.GetComponent<Enemy>().pathIndex = activeWave.pathIndex;
-                activeWave.listOfEnemies.RemoveAt(0);
-            }
-            else
-            {
-                activeWave = null;
-                if (activatedWaves.Count == enemyWaves.Count)
+                if (activeWave.listOfEnemies.Count != 0)
                 {
-                    // All waves are over
+                    GameObject enemy = (GameObject)Instantiate(activeWave.listOfEnemies[0], WayPointManager.Instance.GetSpawnPosition(activeWave.pathIndex), Quaternion.identity);
+                    enemy.GetComponent<Enemy>().pathIndex = activeWave.pathIndex;
+                    activeWave.listOfEnemies.RemoveAt(0);
+                }
+                else
+                {
+                    activeWave = null;
+                    if (activatedWaves.Count == enemyWaves.Count)
+                    {
+                        GameManager.Instance.enemySpawningOver = true;
+                    }
                 }
             }
         }
