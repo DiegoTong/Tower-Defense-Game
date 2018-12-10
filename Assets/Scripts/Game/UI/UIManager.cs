@@ -80,4 +80,19 @@ public class UIManager : MonoBehaviour
             centerWindow.SetActive(false);
         }
     }
+    public void ShowDamage()
+    {
+        StartCoroutine(DoDamageAnimation());
+    }
+    private IEnumerator DoDamageAnimation()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(.1f);
+            damageCanvas.SetActive(true);
+
+            yield return new WaitForSeconds(.1f);
+            damageCanvas.SetActive(false);
+        }
+    }
 }
