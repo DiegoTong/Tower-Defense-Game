@@ -26,8 +26,8 @@ public class UIManager : MonoBehaviour
     {
         txtGold.text = GameManager.Instance.gold.ToString();
         txtWave.text = "Wave " + GameManager.Instance.waveNumber + " / " + WaveManager.Instance.enemyWaves.Count;
-        txtEscapedEnemies.text = "Escaped Enemies " + GameManager.Instance.escapedEnemies + " / " +
-                                 GameManager.Instance.maxAllowedEscapedEnemies;
+        txtEscapedEnemies.text = "Escaped Enemies " + GameManager.Instance.escapedEnemies
+                                ;
     }
     public void ShowAddTowerWindow(GameObject towerSlot)
     {
@@ -39,5 +39,12 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         UpdateTopBar();
+    }
+    public void ShowTowerInfoWindow(Tower tower)
+    {
+        towerInfoWindow.GetComponent<TowerInfoWIndow>().tower = tower;
+        towerInfoWindow.SetActive(true);
+
+        UtilityMethods.MoveUiElementToWorldPosition(towerInfoWindow.GetComponent<RectTransform>(), tower.transform.position);
     }
 }
