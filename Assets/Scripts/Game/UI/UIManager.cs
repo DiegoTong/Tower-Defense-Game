@@ -58,4 +58,26 @@ public class UIManager : MonoBehaviour
         blackBackground.SetActive(true);
         loseGameWindow.SetActive(true);
     }
+    public void CreateHealthBarForEnemy(Enemy enemy)
+    {
+        GameObject healthBar = Instantiate(enemyHealthBarPrefab);
+        healthBar.transform.SetParent(enemyHealthBars, false);
+        healthBar.GetComponent<EnemyHealthBar>().enemy = enemy;
+    }
+    public void ShowCenterWindow(string text)
+    {
+        centerWindow.transform.Find("TxtWave").GetComponent<Text>().text = text;
+        StartCoroutine(EnableAndDisableCenterWindow());
+    }
+    private IEnumerator EnableAndDisableCenterWindow()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(.4f);
+            centerWindow.SetActive(true);
+
+            yield return new WaitForSeconds(.4f);
+            centerWindow.SetActive(false);
+        }
+    }
 }
