@@ -47,4 +47,15 @@ public class UIManager : MonoBehaviour
 
         UtilityMethods.MoveUiElementToWorldPosition(towerInfoWindow.GetComponent<RectTransform>(), tower.transform.position);
     }
+    public void ShowWinScreen()
+    {
+        blackBackground.SetActive(true);
+        winGameWindow.SetActive(true);
+    }
+
+    public void ShowLoseScreen()
+    {
+        blackBackground.SetActive(true);
+        loseGameWindow.SetActive(true);
+    }
 }
