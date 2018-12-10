@@ -67,10 +67,12 @@
     <Compile Include="Assets\Scripts\Game\Enemy\Waypoints\WayPointManager.cs" />
     <Compile Include="Assets\Scripts\Game\GameManager.cs" />
     <Compile Include="Assets\Scripts\Game\Tower\FireTower.cs" />
+    <Compile Include="Assets\Scripts\Game\Tower\IceTower.cs" />
     <Compile Include="Assets\Scripts\Game\Tower\StoneTower.cs" />
     <Compile Include="Assets\Scripts\Game\Tower\Tower.cs" />
     <Compile Include="Assets\Scripts\Game\Tower\TowerManager.cs" />
     <Compile Include="Assets\Scripts\Game\Tower\Weapons\FollowingProjectile.cs" />
+    <Compile Include="Assets\Scripts\Game\Tower\Weapons\Ice.cs" />
     <Compile Include="Assets\Scripts\Game\Tower\Weapons\Stone.cs" />
     <Compile Include="Assets\Scripts\Game\UI\AddTowerWindow.cs" />
     <Compile Include="Assets\Scripts\Game\UI\EnemyHealthBar.cs" />
